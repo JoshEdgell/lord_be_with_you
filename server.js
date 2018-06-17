@@ -1,6 +1,9 @@
 const express            = require('express');
 const app                = express();
 
+const bulletinsController = require('./controllers/bulletins.js');
+app.use('/bulletins', bulletinsController);
+
 app.get('/', (req,res)=>{
   res.render('index.ejs');
 })
