@@ -5,4 +5,8 @@ router.get('/', (req, res)=>{
   res.render('bulletins/index.ejs');
 });
 
+router.get('/new', (req, res)=>{
+  res.render('bulletins/new.ejs');
+})
+
 module.exports = router;
