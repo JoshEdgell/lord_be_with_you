@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <header>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/songs">Songs Home</a></li>
+      </ul>
+    </header>
+
+    <main>
+      <form action="/songs" method="POST">
+        Title: <input type="text" name="title"/><br/>
+        Copyright Info:<input type="text" name="copyrightInfo"/><br/>
+        Lyrics:<textarea name="lyrics"></textarea><br/>
+        <input type="submit" value="Create Song">
+      </form>
+
+  </body>
+</html>

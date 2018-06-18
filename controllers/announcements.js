@@ -10,14 +10,14 @@ router.get('/', (req,res)=>{
   })
 });
 
+router.get('/new', (req,res)=>{
+  res.render('annoucements/new.ejs');
+});
+
 router.post('/', (req, res)=>{
   Announcement.create(req.body, (err, createdAnnouncement)=>{
     res.redirect('/announcements');
   })
-});
-
-router.get('/new', (req,res)=>{
-  res.render('annoucements/new.ejs');
 });
 
 router.get('/:id', (req,res)=>{
