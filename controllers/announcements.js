@@ -1,5 +1,5 @@
 const express             = require('express');
-const Router              = express.Router();
+const router              = express.Router();
 const Announcement        = require('../models/announcements.js');
 
 router.get('/', (req,res)=>{
@@ -13,5 +13,7 @@ router.post('/', (req, res)=>{
 });
 
 router.get('/new', (req,res)=>{
-  res.render('announcements/new.ejs');
-})
+  res.render('annoucements/new.ejs');
+});
+
+module.exports = router;
