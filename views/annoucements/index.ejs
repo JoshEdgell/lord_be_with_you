@@ -18,7 +18,8 @@
       <ul>
         <% for(let i = 0; i < announcements.length; i++){ %>
           <li>
-            <a href="/announcements/<%=announcements[i]._id%>"><%=announcements[i].text%></a>
+            <a href="/announcements/<%=announcements[i]._id%>"><%=announcements[i].text%></a><br/>
+            <a href="/announcements/<%=announcements[i]._id%>/edit">Edit</a>
             <form action="/announcements/<%=announcements[i].id%>?_method=DELETE" method="post">
               <input type="submit" value="Delete"/>
             </form>

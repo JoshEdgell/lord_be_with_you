@@ -26,6 +26,20 @@ router.get('/:id', (req,res)=>{
   })
 });
 
+router.get('/:id/edit', (req,res)=>{
+  Announcement.findById(req.params.id, (err, foundAnnouncement)=>{
+    res.render('annoucements/edit.ejs', {
+      announcement: foundAnnouncement
+    });
+  })
+});
+
+router.put('/:id', (req,res)=>{
+  Announcement.findByIdAndUpdate(req.params.id, req.body, ()=>{
+    res.redirect('/announcements');
+  })
+});
+
 router.delete('/:id', (req,res)=>{
   Announcement.findByIdAndRemove(req.params.id, ()=>{
     res.redirect('/announcements');

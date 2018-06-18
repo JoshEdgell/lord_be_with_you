@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <header>
+      <h1>Edit Announcement</h1>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/announcements">Announcements Index</a></li>
+      </ul>
+    </header>
+    <main>
+      <h2>Announcement Attributes:</h2>
+      <form action="/announcements/<%=announcement._id%>?_method=PUT" method="POST">
+        <input type="text" name="text" value="<%=announcement.text%>"/><br/>
+        <input type="submit" value="Update Announcement"/>
+      </form>
+    </main>
+
+
+  </body>
+</html>
