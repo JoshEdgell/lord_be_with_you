@@ -11,6 +11,8 @@ const announcementsController = require('./controllers/announcements.js');
 app.use('/announcements', announcementsController);
 const bulletinsController = require('./controllers/bulletins.js');
 app.use('/bulletins', bulletinsController);
+const songsController = require('./controllers/songs.js');
+app.use('/songs', songsController);
 
 
 app.get('/', (req,res)=>{

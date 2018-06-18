@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <header>
+      <h1>Songs</h1>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/songs/new">New Song</a></li>
+      </ul>
+    </header>
+
+    <main>
+      <h2>List of Songs</h2>
+      <ul>
+        <% for (let i = 0; i < songs.length; i++) { %>
+          <li>
+            <a href="/songs/<%=songs[i]._id%>"><%=songs[i].title%></a><br/>
+            <a href="/songs/<%=songs[i]._id%>/edit">Edit</a>
+            <form action="/songs/<%=songs[i]._id%>?_method=DELETE" method="post">
+              <input type="submit" value="Delete"/>
+            </form>
+          </li>
+        <% } %>
+      </ul>
+    </main>
+
+  </body>
+</html>
