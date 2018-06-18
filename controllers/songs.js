@@ -28,4 +28,18 @@ router.get('/:id', (req,res)=>{
   })
 });
 
+router.get('/:id/edit', (req,res)=>{
+  Song.findById(req.params.id, (err, foundSong)=>{
+    res.render('songs/edit.ejs', {
+      song: foundSong
+    });
+  })
+});
+
+router.put('/:id', (req,res)=>{
+  Song.findByIdAndUpdate(req.params.id, req.body, ()=>{
+    res.redirect('/songs');
+  })
+});
+
 module.exports = router;

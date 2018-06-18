@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <header>
+      <h1>Edit Song</h1>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/songs">Songs Index</a></li>
+      </ul>
+    </header>
+    <main>
+      <h2>Song Attributes:</h2>
+      <form action="/songs/<%=song._id%>?_method=PUT" method="POST">
+        Title: <input type="text" name="title" value="<%=song.title%>"/><br/>
+        Copyright: <input type="text" name="copyrightInfo" value="<%=song.copyrightInfo%>"/><br/>
+        Lyrics: <input type="text" name="lyrics" value="<%=song.lyrics%>"/><br/>
+        <input type="submit" value="Update Song"/>
+      </form>
+    </main>
+
+
+
+  </body>
+</html>
