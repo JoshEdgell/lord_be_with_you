@@ -20,4 +20,12 @@ router.post('/', (req,res)=>{
   })
 });
 
+router.get('/:id', (req,res)=>{
+  Song.findById(req.params.id, (err,foundSong)=>{
+    res.render('songs/show.ejs', {
+      song: foundSong
+    });
+  })
+});
+
 module.exports = router;
