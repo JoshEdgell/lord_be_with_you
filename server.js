@@ -1,9 +1,11 @@
 const express             = require('express');
 const mongoose            = require('mongoose');
 const bodyParser          = require('body-parser');
+const methodOverride      = require('method-override');
 const app                 = express();
 
 app.use(bodyParser.urlencoded({extended:false}));
+app.use(methodOverride('_method'));
 
 const announcementsController = require('./controllers/announcements.js');
 app.use('/announcements', announcementsController);

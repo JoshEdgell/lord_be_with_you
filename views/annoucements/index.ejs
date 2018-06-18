@@ -13,5 +13,19 @@
       </ul>
     </header>
 
+    <main>
+      <h2>List of Announcements</h2>
+      <ul>
+        <% for(let i = 0; i < announcements.length; i++){ %>
+          <li>
+            <a href="/announcements/<%=announcements[i]._id%>"><%=announcements[i].text%></a>
+            <form action="/announcements/<%=announcements[i].id%>?_method=DELETE" method="post">
+              <input type="submit" value="Delete"/>
+            </form>
+          </li>
+        <% } %>
+      </ul>
+    </main>
+
   </body>
 </html>
