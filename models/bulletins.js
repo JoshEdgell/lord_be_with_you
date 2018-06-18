@@ -3,7 +3,7 @@ const mongoose          = require('mongoose');
 //Date
 //Songs
 //Sermon
-//Announcements
+//Announcements - Done
 //Closing Songs
 
 const bulletinSchema = mongoose.Schema({
