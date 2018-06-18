@@ -42,4 +42,10 @@ router.put('/:id', (req,res)=>{
   })
 });
 
+router.delete('/:id', (req,res)=>{
+  Song.findByIdAndRemove(req.params.id, ()=>{
+    res.redirect('/songs');
+  })
+})
+
 module.exports = router;
