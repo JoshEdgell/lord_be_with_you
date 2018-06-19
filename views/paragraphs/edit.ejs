@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <header>
+      <h1>Edit Paragraph</h1>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/paragraphs">Paragraphs Home</a></li>
+      </ul>
+    </header>
+
+    <main>
+      <form action="/paragraphs/<%=paragraph._id%>?_method=PUT" method="POST">
+        Text: <textarea name="text" value="<%=paragraph.text%>"></textarea>
+        <input type="submit" value="Update Paragraph"/>
+      </form>
+    </main>
+
+  </body>
+</html>

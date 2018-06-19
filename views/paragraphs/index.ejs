@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <header>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/paragraphs/new">New Paragraph</a></li>
+      </ul>
+    </header>
+
+    <main>
+      <h1>All Paragrphas</h1>
+      <ul>
+        <% for (let i = 0; i < paragraphs.length; i++) { %>
+          <li><a href="/paragraphs/<%=paragraphs[i]._id%>"><%=paragraphs[i].text%></a><br>
+          <a href="/paragraphs/<%=paragraphs[i]._id%>/edit">Edit</a>
+          <form action="/paragraphs/<%=paragraphs[i]._id%>?_method=DELETE" method="POST">
+            <input type="submit" value="Delete"/>
+          </form>
+          </li>
+          <% } %>
+        </ul>
+
+  </body>
+</html>
