@@ -13,6 +13,8 @@ const bulletinsController = require('./controllers/bulletins.js');
 app.use('/bulletins', bulletinsController);
 const songsController = require('./controllers/songs.js');
 app.use('/songs', songsController);
+const stanzasController = require('./controllers/stanzas.js');
+app.use('/stanzas', stanzasController);
 
 
 app.get('/', (req,res)=>{

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <header>
+      <h1>Edit Stanza</h2>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/stanzas">Stanzas Index</a></li>
+      </ul>
+    </header>
+
+    <main>
+      <form action="/stanzas/<%=stanza._id%>?_method=PUT" method="POST">
+        Verse: <textarea name="verse" value="<%=stanza.verse%>"></textarea>
+        <input type="submit" value="Update Verse"/>
+      </form>
+    </main>
+
+  </body>
+</html>

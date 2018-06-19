@@ -1,6 +1,6 @@
-const express         = require('express');
-const router          = express.Router();
-const Song            = require('../models/songs.js');
+const express = require('express');
+const router  = express.Router();
+const Song    = require('../models/songs.js');
 
 router.get('/', (req,res)=>{
   Song.find({}, (err, foundSongs)=>{

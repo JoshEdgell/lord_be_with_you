@@ -1,10 +1,10 @@
 const mongoose          = require('mongoose');
 
 //Date
-//Songs
+//Songs - Done
 //Sermon
 //Announcements - Done
-//Closing Songs
+//Closing Songs - Done
 
 const bulletinSchema = mongoose.Schema({
   date: Date,
