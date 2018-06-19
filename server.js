@@ -6,6 +6,7 @@ const app                 = express();
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(methodOverride('_method'));
+app.use(express.static('public'));
 
 const announcementsController = require('./controllers/announcements.js');
 app.use('/announcements', announcementsController);
