@@ -14,9 +14,11 @@ router.get('/new', (req,res)=>{
   res.render('songs/new.ejs');
 });
 
+
+//This route works for the app
 router.post('/', (req,res)=>{
   Song.create(req.body, (err, createdSong)=>{
-    res.redirect('/songs');
+    res.json(createdSong);
   })
 });
 
