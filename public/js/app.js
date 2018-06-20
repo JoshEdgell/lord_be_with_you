@@ -7,17 +7,21 @@ app.controller('AppController', ['$http', function($http){
   this.newSongData = {};
   this.startNewSong = function(){
     this.showNewSongForm = false;
-    console.log(this.newSongData);
     $http({
       method: 'POST',
       url: this.url + 'songs',
       data: this.newSongData
     }).then(
       function(response){
-        console.log(response,'response')
+        // console.log(response,'response')
+        controller.newSongData = response.data;
+        console.log(controller.newSongData, 'new song');
       }, function(error){
         console.log(error, 'error');
       }
     )
-  }
+  };
+  this.addNewStanza = function(){
+    console.log('clicked');
+  };
 }])

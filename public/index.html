@@ -19,6 +19,17 @@
         Copyright Info: <input type="text" name="copyrightInfo" ng-model="main.newSongData.copyrightInfo"/><br/>
         <input type="submit" value="Start Song">
       </form>
+      <div class="addVerse" ng-if="!main.showNewSongForm">
+        <form ng-submit="main.addNewStanza()">
+          Next Verse: <textarea ng-model="main.newSongVerse"></textarea>
+          <input type="submit" value="Add Slide">
+        </form>
+        <h3>{{main.newSongData.title}}</h3>
+        <div ng-each="poop in main.newSongData.lyrics">
+          {{poop}}
+        </div>
+      </div>
+
     </div>
   </body>
 </html>
