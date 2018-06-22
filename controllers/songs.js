@@ -2,6 +2,7 @@ const express = require('express');
 const router  = express.Router();
 const Song    = require('../models/songs.js');
 
+
 router.get('/', (req,res)=>{
   Song.find({}, (err, foundSongs)=>{
     res.render('songs/index.ejs', {
@@ -15,7 +16,7 @@ router.get('/new', (req,res)=>{
 });
 
 
-//This route works for the app
+//This route is used on the clergy side
 router.post('/', (req,res)=>{
   Song.create(req.body, (err, createdSong)=>{
     res.json(createdSong);

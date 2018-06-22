@@ -15,10 +15,16 @@ router.get('/new', (req,res)=>{
   res.render('stanzas/new.ejs');
 });
 
+//This route is used on the clergy side
 router.post('/', (req,res)=>{
-  Stanza.create(req.body, (err, createdStanza)=>{
-    res.redirect('stanzas');
-  });
+  Song.findById(req.body.songId, (err, foundSong)=>{
+    Stanza.create(req.body, (err, createdStanza)=>{
+      foundSong.lyrics.push(createdStanza);
+      foundSong.save((err,data)=>{
+        res.json(foundSong);
+      })
+    })
+  })
 });
 
 router.get('/:id', (req,res)=>{
