@@ -15,10 +15,16 @@ router.get('/new', (req,res)=>{
   res.render('paragraphs/new.ejs');
 });
 
+//This route is ready to be used on the app
 router.post('/', (req,res)=>{
-  Paragraph.create(req.body, (err, createdParagraph)=>{
-    res.redirect('paragraphs');
-  });
+  Sermon.findById(req.body.sermonId, (err,foundSermon)=>{
+    Paragraph.create(req.body, (err,createdParagraph)=>{
+      foundSermon.body.push(createdParagraph);
+      foundSermon.save((err,data)=>{
+        res.json(foundSermon);
+      })
+    })
+  })
 });
 
 router.get('/:id', (req,res)=>{

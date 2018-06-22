@@ -19,9 +19,9 @@ app.controller('AppController', ['$http', function($http){
         controller.newSongData.songId = response.data._id;
         controller.newSongData.lyrics = response.data.lyrics;
         controller.newSongData.title = response.data.title;
-        console.log(controller.newSongData, 'new song');
+        // console.log(controller.newSongData, 'new song');
       }, function(error){
-        console.log(error, 'error');
+        console.log(error, 'error in startNewSong()');
       }
     )
   };
@@ -37,10 +37,10 @@ app.controller('AppController', ['$http', function($http){
       function(response){
         controller.newSongData.lyrics = response.data.lyrics;
         controller.newSongVerse = '';
-        console.log(controller.newSongData.lyrics, 'newSongData.lyrics')
+        // console.log(controller.newSongData.lyrics, 'newSongData.lyrics')
         // console.log(controller.newSongData, 'newSongData');
       }, function(error) {
-        console.log(error, 'error from new stanza route');
+        console.log(error, 'error from addNewStanza()');
       }
     )
   };

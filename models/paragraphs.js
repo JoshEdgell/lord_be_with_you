@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 
 const paragraphSchema = mongoose.Schema({
-  text: String
+  text: String,
+  sermonId: String
 });
 
 const Paragraph = mongoose.model('Paragraph', paragraphSchema);

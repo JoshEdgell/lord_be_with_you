@@ -13,29 +13,44 @@
   </head>
   <body ng-controller="AppController as main">
 
+    <div class="container">
 
-    <div class="createSong">
-      <h3>Start a new song</h3>
-      <!-- Make a new Song Form -->
-      <form ng-if="main.showNewSongForm" ng-submit="main.startNewSong()">
-        Title: <input type="text" ng-model="main.newSongData.title"/><br/>
-        Copyright Info: <input type="text" name="copyrightInfo" ng-model="main.newSongData.copyrightInfo"/><br/>
-        <input type="submit" value="Start Song">
-      </form>
-
-      <!-- Add a verse to the song form -->
-      <div class="addVerse" ng-if="!main.showNewSongForm">
-        <form ng-submit="main.addNewStanza()">
-          Next Verse: <textarea ng-model="main.newSongVerse"></textarea>
-          <input type="submit" value="Add Slide">
+      <div class="createSong">
+        <h3>Start a new song</h3>
+        <!-- Make a new Song Form -->
+        <form ng-if="main.showNewSongForm" ng-submit="main.startNewSong()">
+          Title: <input type="text" ng-model="main.newSongData.title"/><br/>
+          Copyright Info: <input type="text" name="copyrightInfo" ng-model="main.newSongData.copyrightInfo"/><br/>
+          <input type="submit" value="Start Song">
         </form>
-        <h3>{{main.newSongData.title}}</h3>
-        <div ng-repeat="stanza in main.newSongData.lyrics">
-          {{stanza.verse}}
+
+        <!-- Add a verse to the song form -->
+        <div class="addVerse" ng-if="!main.showNewSongForm">
+          <form ng-submit="main.addNewStanza()">
+            Next Verse: <textarea ng-model="main.newSongVerse"></textarea>
+            <input type="submit" value="Add Slide">
+          </form>
+          <h3>{{main.newSongData.title}}</h3>
+          <div ng-repeat="stanza in main.newSongData.lyrics">
+            {{stanza.verse}}
+          </div>
+          <button ng-click="main.addLastStanza()">End Song</button>
         </div>
-        <button ng-click="main.addLastStanza()">End Song</button>
       </div>
 
+      <div class="createSermon">
+        <h3>Start a new Sermon</h3>
+
+
+
+
+
+
+      </div>
+
+
+      
     </div>
+
   </body>
 </html>
