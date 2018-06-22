@@ -4,8 +4,21 @@ app.controller('AppController', ['$http', function($http){
   const controller = this;
   this.url = 'http://localhost:3000/'
   this.showNewSongForm = true;
+  this.allSongs = [];
   this.newSongData = {};
   this.newSongVerse = '';
+  this.getAllSongs = function(){
+    $http({
+      method: 'GET',
+      url: this.url + 'songs'
+    }).then(
+      function(response){
+        controller.allSongs = response.data;
+      }, function(error){
+        console.log(error, 'error from getAllSongs()')
+      }
+    )
+  };
   this.startNewSong = function(){
     this.showNewSongForm = false;
     $http({
@@ -49,4 +62,17 @@ app.controller('AppController', ['$http', function($http){
     this.showNewSongForm = true;
     this.newSongData = {};
   }
+  this.deleteSong = function(id){
+    $http({
+      method: 'DELETE',
+      url: this.url + 'songs/' + id
+    }).then(
+      function(response){
+        controller.getAllSongs();
+      }, function(error){
+        console.log(error, 'error from deleteSong()');
+      }
+    )
+  };
+  this.getAllSongs();
 }])

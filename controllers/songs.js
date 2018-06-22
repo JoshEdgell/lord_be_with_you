@@ -2,12 +2,10 @@ const express = require('express');
 const router  = express.Router();
 const Song    = require('../models/songs.js');
 
-
+//This route is used on the clergy side
 router.get('/', (req,res)=>{
   Song.find({}, (err, foundSongs)=>{
-    res.render('songs/index.ejs', {
-      songs: foundSongs
-    });
+    res.json(foundSongs);
   })
 });
 
@@ -45,9 +43,10 @@ router.put('/:id', (req,res)=>{
   })
 });
 
+//This route is used on the clergy side
 router.delete('/:id', (req,res)=>{
   Song.findByIdAndRemove(req.params.id, ()=>{
-    res.redirect('/songs');
+    res.send('song deleted');
   })
 })
 

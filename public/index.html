@@ -43,13 +43,18 @@
 
 
 
+      </div>
 
-
-
+      <div class="songList">
+        <h1>Song List</h1>
+        <div ng-repeat="song in main.allSongs">
+          <strong>{{song.title}}</strong>
+          <button ng-click="main.deleteSong(song._id);">Delete</button>
+        </div>
       </div>
 
 
-      
+
     </div>
 
   </body>
