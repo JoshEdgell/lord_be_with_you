@@ -92,6 +92,18 @@ app.controller('AppController', ['$http', function($http){
       }
     )
   };
+  this.deleteSermon = function(id){
+    $http({
+      method: 'DELETE',
+      url: this.url + 'sermons/' + id
+    }).then(
+      function(response){
+        controller.getAllSermons();
+      }, function(error){
+        console.log(error, 'error from deleteSermon()');
+      }
+    )
+  };
   this.startNewSermon = function(){
     this.showNewSermonForm = false;
     $http({
