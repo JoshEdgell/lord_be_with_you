@@ -23,7 +23,8 @@ router.get('/:id', (req,res)=>{
 
 router.delete('/:id', (req,res)=>{
   Sermon.findByIdAndRemove(req.params.id, ()=>{
-    res.send('sermon deleted');
+    res.statusMessage = 'Sermon Deleted';
+    res.status(204).json();
   })
 });
 

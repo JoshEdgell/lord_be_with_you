@@ -98,6 +98,7 @@ app.controller('AppController', ['$http', function($http){
       url: this.url + 'sermons/' + id
     }).then(
       function(response){
+        console.log(response);
         controller.getAllSermons();
       }, function(error){
         console.log(error, 'error from deleteSermon()');
