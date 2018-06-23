@@ -9,11 +9,6 @@ router.get('/', (req,res)=>{
   })
 });
 
-router.get('/new', (req,res)=>{
-  res.render('songs/new.ejs');
-});
-
-
 //This route is used on the clergy side
 router.post('/', (req,res)=>{
   Song.create(req.body, (err, createdSong)=>{
@@ -22,18 +17,8 @@ router.post('/', (req,res)=>{
 });
 
 router.get('/:id', (req,res)=>{
-  Song.findById(req.params.id, (err,foundSong)=>{
-    res.render('songs/show.ejs', {
-      song: foundSong
-    });
-  })
-});
-
-router.get('/:id/edit', (req,res)=>{
   Song.findById(req.params.id, (err, foundSong)=>{
-    res.render('songs/edit.ejs', {
-      song: foundSong
-    });
+    res.json(foundSong);
   })
 });
 

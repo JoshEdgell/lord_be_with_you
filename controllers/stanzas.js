@@ -5,14 +5,8 @@ const Stanza  = require('../models/stanzas.js');
 
 router.get('/', (req,res)=>{
   Stanza.find({}, (err, foundStanzas)=>{
-    res.render('stanzas/index.ejs', {
-      stanzas: foundStanzas
-    });
+    res.json(foundStanzas);
   })
-});
-
-router.get('/new', (req,res)=>{
-  res.render('stanzas/new.ejs');
 });
 
 //This route is used on the clergy side

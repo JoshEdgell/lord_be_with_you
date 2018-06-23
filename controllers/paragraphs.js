@@ -5,14 +5,8 @@ const Sermon    = require('../models/sermons.js');
 
 router.get('/', (req,res)=>{
   Paragraph.find({}, (err, foundParagraphs)=>{
-    res.render('paragraphs/index.ejs', {
-      paragraphs: foundParagraphs
-    });
+    res.json(foundParagraphs);
   });
-});
-
-router.get('/new', (req,res)=>{
-  res.render('paragraphs/new.ejs');
 });
 
 //This route is ready to be used on the app

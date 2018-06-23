@@ -4,9 +4,13 @@ app.controller('AppController', ['$http', function($http){
   const controller = this;
   this.url = 'http://localhost:3000/'
   this.showNewSongForm = true;
+  this.showNewSermonForm = true;
   this.allSongs = [];
+  this.allSermons = [];
   this.newSongData = {};
+  this.newSermonData = {};
   this.newSongVerse = '';
+  this.newSermonParagraph = '';
   this.getAllSongs = function(){
     $http({
       method: 'GET',
@@ -16,6 +20,19 @@ app.controller('AppController', ['$http', function($http){
         controller.allSongs = response.data;
       }, function(error){
         console.log(error, 'error from getAllSongs()')
+      }
+    )
+  };
+  this.getAllSermons = function(){
+    $http({
+      method: 'GET',
+      url: this.url + 'sermons'
+    }).then(
+      function(response){
+        controller.allSermons = response.data;
+        // console.log(response, 'response from getAllSermons()');
+      }, function(error){
+        console.log(error, 'error from getAllSermons()');
       }
     )
   };
@@ -61,6 +78,7 @@ app.controller('AppController', ['$http', function($http){
     this.addNewStanza;
     this.showNewSongForm = true;
     this.newSongData = {};
+    this.getAllSongs();
   }
   this.deleteSong = function(id){
     $http({
@@ -74,5 +92,48 @@ app.controller('AppController', ['$http', function($http){
       }
     )
   };
+  this.startNewSermon = function(){
+    this.showNewSermonForm = false;
+    $http({
+      method: 'POST',
+      url: this.url + 'sermons',
+      data: this.newSermonData
+    }).then(
+      function(response){
+        controller.newSermonData.title = response.data.title;
+        controller.newSermonData.sermonId = response.data._id;
+        controller.newSermonData.body = response.data.body;
+        console.log(controller.newSermonData, 'new sermon');
+      }, function(error){
+        console.log(error, 'error from startNewSermon()');
+      }
+    )
+  };
+  this.addNewParagraph = function(){
+    $http({
+      method: 'POST',
+      url: this.url + 'paragraphs',
+      data: {
+        text: this.newSermonParagraph,
+        sermonId: this.newSermonData.sermonId
+      }
+    }).then(
+      function(response){
+        controller.newSermonData.body = response.data.body;
+        controller.newSermonParagraph = '';
+        // console.log(response, 'response from addNewParagraph()');
+        // console.log(controller.newSermonData, 'new sermon data');
+      }, function(error){
+        console.log(error, 'error from addNewParagraph()');
+      }
+    )
+  };
+  this.addLastParagraph = function(){
+    this.addNewParagraph;
+    this.showNewSermonForm = true;
+    this.newSermonData = {};
+    this.getAllSermons();
+  }
   this.getAllSongs();
+  this.getAllSermons();
 }])

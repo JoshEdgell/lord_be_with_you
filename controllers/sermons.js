@@ -2,6 +2,7 @@ const express = require('express');
 const router  = express.Router();
 const Sermon  = require('../models/sermons.js');
 
+//This route is used on the clergy side
 router.get('/', (req,res)=>{
   Sermon.find({}, (err, foundSermons)=>{
     res.json(foundSermons);

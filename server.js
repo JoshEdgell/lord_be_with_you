@@ -15,6 +15,8 @@ const bulletinsController = require('./controllers/bulletins.js');
 app.use('/bulletins', bulletinsController);
 const paragraphsController = require('./controllers/paragraphs.js');
 app.use('/paragraphs', paragraphsController);
+const sermonsController = require('./controllers/sermons.js');
+app.use('/sermons', sermonsController);
 const songsController = require('./controllers/songs.js');
 app.use('/songs', songsController);
 const stanzasController = require('./controllers/stanzas.js');
