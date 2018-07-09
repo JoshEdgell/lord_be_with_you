@@ -11,6 +11,8 @@ app.controller('AppController', ['$http', function($http){
   this.newSermonData = {};
   this.newSongVerse = '';
   this.newSermonParagraph = '';
+  this.date = '';
+  this.newService = {};
   this.getAllSongs = function(){
     $http({
       method: 'GET',
@@ -147,6 +149,11 @@ app.controller('AppController', ['$http', function($http){
     this.newSermonData = {};
     this.getAllSermons();
   }
+  this.addDate = function(){
+    this.newService.date = this.date;
+    this.date = '';
+    console.log(this.newService, 'current service');
+  };
   this.getAllSongs();
   this.getAllSermons();
 }])

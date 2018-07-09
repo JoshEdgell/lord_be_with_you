@@ -6,23 +6,41 @@
 .createSong {
   border: 1px solid red;
   width: 400px;
-  height: 400px;
+  height: 250px;
 }
 
 .createSermon {
   border: 1px solid blue;
   width: 400px;
-  height: 400px;
+  height: 250px;
 }
 
 .songList {
   border: 1px solid yellow;
   width: 400px;
-  height: 400px;
+  height: 250px;
 }
 
 .sermonList {
   border: 1px solid green;
   width: 400px;
-  height: 400px;
+  height: 250px;
+}
+
+.createService {
+  border: 1px solid black;
+  width: 400px;
+  height: 250px;
+}
+
+.currentService {
+  border: 1px solid pink;
+  width: 400px;
+  height: 250px;
+}
+
+.serviceList {
+  border: 1px solid gray;
+  width: 400px;
+  height: 250px;
 }

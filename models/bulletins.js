@@ -9,7 +9,7 @@ const Sermon            = require('./sermons.js');
 //Closing Songs - Done
 
 const bulletinSchema = mongoose.Schema({
-  date: Date,
+  date: String,
   praiseMusic: [Song.schema],
   sermon: [Sermon.schema],
   Announcements: Array,

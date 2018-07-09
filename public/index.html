@@ -38,6 +38,14 @@
         </div>
       </div>
 
+      <div class="songList">
+        <h1>Song List</h1>
+        <div ng-repeat="song in main.allSongs">
+          <strong>{{song.title}}</strong>
+          <button ng-click="main.deleteSong(song._id);">Delete</button>
+        </div>
+      </div>
+
       <div class="createSermon">
         <h3>Start a new Sermon</h3>
         <form ng-if="main.showNewSermonForm" ng-submit="main.startNewSermon()">
@@ -58,20 +66,33 @@
         </div>
       </div>
 
-      <div class="songList">
-        <h1>Song List</h1>
-        <div ng-repeat="song in main.allSongs">
-          <strong>{{song.title}}</strong>
-          <button ng-click="main.deleteSong(song._id);">Delete</button>
-        </div>
-      </div>
-
       <div class="sermonList">
         <h1>Sermon List</h1>
         <div ng-repeat="sermon in main.allSermons">
           <strong>{{sermon.title}}</strong>
           <button ng-click="main.deleteSermon(sermon._id);">Delete</button>
         </div>
+      </div>
+
+      <div class="createService">
+        <h1>Create Service</h1>
+        <form>
+          Date: <input type="text" ng-model="main.date">
+          <input type="submit" value="add Date" ng-click="main.addDate()">
+        </form>
+      </div>
+
+      <div class="currentService">
+        <h1>Current Service</h1>
+        <p>Date: {{main.newService.date}}</p>
+        <p>Praise Music</p>
+        <ul>
+          <li ng-repeat='song in main.newService.praiseMusic'>{{song.title}}</li>
+        </ul>
+      </div>
+
+      <div class="serviceList">
+        <h1>Service List</h1>
       </div>
 
 
