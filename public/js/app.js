@@ -12,7 +12,13 @@ app.controller('AppController', ['$http', function($http){
   this.newSongVerse = '';
   this.newSermonParagraph = '';
   this.date = '';
-  this.newService = {};
+  this.newService = {
+    date: '',
+    praiseMusic: [],
+    sermon: {},
+    announcements: [],
+    closingMusic: []
+  };
   this.getAllSongs = function(){
     $http({
       method: 'GET',
@@ -20,6 +26,7 @@ app.controller('AppController', ['$http', function($http){
     }).then(
       function(response){
         controller.allSongs = response.data;
+        console.log(controller.allSongs, 'all songs')
       }, function(error){
         console.log(error, 'error from getAllSongs()')
       }
@@ -153,6 +160,10 @@ app.controller('AppController', ['$http', function($http){
     this.newService.date = this.date;
     this.date = '';
     console.log(this.newService, 'current service');
+  };
+  this.addPraiseSong = function(){
+    this.newService.praiseMusic.push(this.addingSong);
+    this.addingSong = null;
   };
   this.getAllSongs();
   this.getAllSermons();

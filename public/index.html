@@ -78,7 +78,12 @@
         <h1>Create Service</h1>
         <form>
           Date: <input type="text" ng-model="main.date">
-          <input type="submit" value="add Date" ng-click="main.addDate()">
+          <input type="submit" value="Add Date" ng-click="main.addDate()"></br>
+          Praise Music:
+          <select ng-model="main.addingSong" ng-options="song.title for song in main.allSongs">
+          <input type="submit" value="Add Praise Song" ng-click="main.addPraiseSong()">
+          </select>
+
         </form>
       </div>
 

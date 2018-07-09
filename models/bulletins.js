@@ -11,8 +11,8 @@ const Sermon            = require('./sermons.js');
 const bulletinSchema = mongoose.Schema({
   date: String,
   praiseMusic: [Song.schema],
-  sermon: [Sermon.schema],
-  Announcements: Array,
+  sermon: Sermon.schema,
+  announcements: Array,
   closingMusic: [Song.schema]
 });
 
