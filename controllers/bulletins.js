@@ -1,17 +1,24 @@
 const express         = require('express');
 const router          = express.Router();
-const Bulletins       = require('../models/bulletins.js');
+const Bulletin        = require('../models/bulletins.js');
 
-router.get('/', (req, res)=>{
-  res.render('bulletins/index.ejs');
+router.get('/', (req,res)=>{
+  Bulletin.find({}, (err, foundBulletins)=>{
+    res.json(foundBulletins);
+  })
 });
 
 router.post('/', (req,res)=>{
-  res.send('bulletin created');
-})
+  Bulletin.create(req.body, (err, createdBulletin)=>{
+    res.json(createdBulletin);
+  })
+});
 
-router.get('/new', (req, res)=>{
-  res.render('bulletins/new.ejs');
+router.delete('/:id', (req,res)=>{
+  Bulletin.findByIdAndRemove(req.params.id, ()=>{
+    res.statusMessage = 'Service Deleted';
+    res.status(204).json();
+  })
 })
 
 module.exports = router;

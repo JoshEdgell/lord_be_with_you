@@ -7,6 +7,7 @@ app.controller('AppController', ['$http', function($http){
   this.showNewSermonForm = true;
   this.allSongs = [];
   this.allSermons = [];
+  this.allServices = [];
   this.newSongData = {};
   this.newSermonData = {};
   this.newSongVerse = '';
@@ -44,6 +45,17 @@ app.controller('AppController', ['$http', function($http){
         console.log(error, 'error from getAllSermons()');
       }
     )
+  };
+  this.getAllServices = function(){
+    $http({
+      method: 'GET',
+      url: this.url + 'bulletins'
+    }).then(function(response){
+      controller.allServices = response.data;
+      console.log(controller.allServices, 'this.allServices')
+    }, function(error){
+      console.log(error, 'error from getAllServices()')
+    })
   };
   this.startNewSong = function(){
     this.showNewSongForm = false;
@@ -114,6 +126,17 @@ app.controller('AppController', ['$http', function($http){
       }
     )
   };
+  this.deleteService = function(id){
+    $http({
+      method: 'DELETE',
+      url: this.url + 'bulletins/' + id
+    }).then(function(response){
+      console.log(response, 'response from deleteService');
+      controller.getAllServices();
+    }, function(error){
+      console.log(error, 'error from deleteService');
+    })
+  };
   this.startNewSermon = function(){
     this.showNewSermonForm = false;
     $http({
@@ -165,6 +188,38 @@ app.controller('AppController', ['$http', function($http){
     this.newService.praiseMusic.push(this.addingSong);
     this.addingSong = null;
   };
+  this.addSermon = function(){
+    this.newService.sermon = this.addingSermon;
+    this.addingSermon = null;
+  };
+  this.addAnnouncement = function(){
+    this.newService.announcements.push(this.newAnnouncement);
+    this.newAnnouncement = null;
+  };
+  this.addClosingSong = function(){
+    this.newService.closingMusic.push(this.addingSong);
+    this.addingSong = null;
+  };
+  this.createBulletin = function(){
+    $http({
+      method: 'POST',
+      url: this.url + 'bulletins',
+      data: this.newService
+    }).then(
+      function(response){
+        controller.newService = {
+          date: '',
+          praiseMusic: [],
+          sermon: {},
+          announcements: [],
+          closingMusic: []
+        }
+      }, function(error){
+        console.log(error, 'error from createdBulletin()');
+      }
+    )
+  };
   this.getAllSongs();
   this.getAllSermons();
+  this.getAllServices();
 }])
