@@ -1,12 +1,40 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" ng-app="LordApp">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Lord Be With You</title>
+    <!-- CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="css/main.css">
+
+    <!-- Angular -->
+    <script src="/js/angular.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script> -->
+    <!-- JS -->
+    <script src="/js/app.js"></script>
   </head>
-  <body>
-    
+  <body ng-controller="AppController as ctrl">
+    <header>
+    <h1>
+      Lord Be With You
+    </h1>
+    </header>
+
+    <div class="container">
+      <div class="row">
+        <div class="build col-9">
+          <h3>
+            Build
+          </h3>
+        </div>
+        <div class="review col-3">
+          <h3>
+            Review
+          </h3>
+        </div>
+      </div>
+    </div>
+
+
   </body>
 </html>

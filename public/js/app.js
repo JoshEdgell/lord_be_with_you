@@ -2,6 +2,7 @@ const app = angular.module('LordApp', []);
 
 app.controller('AppController', ['$http', function($http){
   const controller = this;
+  this.word = 'poop';
   this.url = 'http://localhost:3000/'
   this.showNewSongForm = true;
   this.showNewSermonForm = true;
