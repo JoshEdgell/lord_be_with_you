@@ -23,19 +23,17 @@ router.post('/', (req,res)=>{
 
 router.get('/:id', (req,res)=>{
   Paragraph.findById(req.params.id, (err,foundParagraph)=>{
-    res.render('paragraphs/show.ejs', {
-      paragraph: foundParagraph
-    });
+    res.json(foundParagraph);
   });
 });
 
-router.get('/:id/edit', (req,res)=>{
-  Paragraph.findById(req.params.id, (err,foundParagraph)=>{
-    res.render('paragraphs/edit.ejs', {
-      paragraph: foundParagraph
-    });
-  });
-});
+// router.get('/:id/edit', (req,res)=>{
+//   Paragraph.findById(req.params.id, (err,foundParagraph)=>{
+//     res.render('paragraphs/edit.ejs', {
+//       paragraph: foundParagraph
+//     });
+//   });
+// });
 
 router.put('/:id', (req,res)=>{
   Paragraph.findByIdAndUpdate(req.params.id, req.body, ()=>{
@@ -45,7 +43,6 @@ router.put('/:id', (req,res)=>{
 
 router.delete('/:id', (req,res)=>{
   Paragraph.findByIdAndRemove(req.params.id, ()=>{
-    res.redirect('/paragraphs');
   });
 });
 

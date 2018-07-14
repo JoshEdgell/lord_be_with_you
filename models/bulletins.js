@@ -4,7 +4,7 @@ const Sermon            = require('./sermons.js');
 
 //Date
 //Songs - Done
-//Sermon
+//Sermon - Done
 //Announcements - Done
 //Closing Songs - Done
 

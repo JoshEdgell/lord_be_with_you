@@ -10,9 +10,9 @@ router.get('/', (req,res)=>{
   })
 });
 
-router.get('/new', (req,res)=>{
-  res.render('annoucements/new.ejs');
-});
+// router.get('/new', (req,res)=>{
+//   res.render('annoucements/new.ejs');
+// });
 
 router.post('/', (req, res)=>{
   Announcement.create(req.body, (err, createdAnnouncement)=>{
@@ -20,11 +20,11 @@ router.post('/', (req, res)=>{
   })
 });
 
-router.get('/:id', (req,res)=>{
-  Announcement.findById(req.params.id, (err, foundAnnouncement)=>{
-    res.send(foundAnnouncement);
-  })
-});
+// router.get('/:id', (req,res)=>{
+//   Announcement.findById(req.params.id, (err, foundAnnouncement)=>{
+//     res.send(foundAnnouncement);
+//   })
+// });
 
 router.get('/:id/edit', (req,res)=>{
   Announcement.findById(req.params.id, (err, foundAnnouncement)=>{

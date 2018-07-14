@@ -23,29 +23,25 @@ router.post('/', (req,res)=>{
 
 router.get('/:id', (req,res)=>{
   Stanza.findById(req.params.id, (err,foundStanza)=>{
-    res.render('stanzas/show.ejs', {
-      stanza: foundStanza
-    });
+    res.json(foundStanza)
   })
 });
 
-router.get('/:id/edit', (req,res)=>{
-  Stanza.findById(req.params.id, (err, foundStanza)=>{
-    res.render('stanzas/edit.ejs', {
-      stanza: foundStanza
-    });
-  })
-});
+// router.get('/:id/edit', (req,res)=>{
+//   Stanza.findById(req.params.id, (err, foundStanza)=>{
+//     res.render('stanzas/edit.ejs', {
+//       stanza: foundStanza
+//     });
+//   })
+// });
 
 router.put('/:id', (req,res)=>{
   Stanza.findByIdAndUpdate(req.params.id, req.body, ()=>{
-    res.redirect('/stanzas');
   })
 });
 
 router.delete('/:id', (req,res)=>{
   Stanza.findByIdAndRemove(req.params.id, ()=>{
-    res.redirect('/stanzas');
   })
 });
 

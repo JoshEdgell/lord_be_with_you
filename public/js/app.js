@@ -213,7 +213,8 @@ app.controller('AppController', ['$http', function($http){
           sermon: {},
           announcements: [],
           closingMusic: []
-        }
+        };
+        controller.getAllServices();
       }, function(error){
         console.log(error, 'error from createdBulletin()');
       }

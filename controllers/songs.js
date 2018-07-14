@@ -22,11 +22,10 @@ router.get('/:id', (req,res)=>{
   })
 });
 
-router.put('/:id', (req,res)=>{
-  Song.findByIdAndUpdate(req.params.id, req.body, ()=>{
-    res.redirect('/songs');
-  })
-});
+// router.put('/:id', (req,res)=>{
+//   Song.findByIdAndUpdate(req.params.id, req.body, ()=>{
+//   })
+// });
 
 //This route is used on the clergy side
 router.delete('/:id', (req,res)=>{
