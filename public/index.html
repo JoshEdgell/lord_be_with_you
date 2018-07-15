@@ -23,9 +23,40 @@
     <div class="container">
       <div class="row">
         <div class="build col-9">
-          <h3>
-            Build
-          </h3>
+
+          <button class="btn btn-primary- btn-lg btnStartService" ng-if="ctrl.showStartButton" ng-click="ctrl.startNewService()">Start Service</button>
+
+          <div class="newSermon" ng-if="!ctrl.showStartButton">
+
+            <h5>
+              Date: {{ctrl.newService.date}}
+            </h5>
+            <h5>
+              Praise Music:
+            </h5>
+            <ul>
+              <li ng-repeat="song in ctrl.newService.praiseMusic"></li>
+            </ul>
+            <h5>
+              Sermon: {{ctrl.newService.sermon.title}}
+            </h5>
+            <h5>
+              Announcements:
+            </h5>
+            <ul>
+              <li ng-repeat="announcement in ctrl.newService.announcements"></li>
+            </ul>
+            <h5>
+              Closing Music:
+            </h5>
+            <ul>
+              <li ng-repeat="song in
+              ctrl.newService.closingMusic"></li>
+            </ul>
+            <hr>
+
+          </div>
+
         </div>
         <div class="review col-3">
           <h3>
@@ -36,5 +67,11 @@
     </div>
 
 
+    <!-- jQuery -->
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <script src="/js/alt.js"></script>
   </body>
 </html>

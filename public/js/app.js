@@ -2,10 +2,8 @@ const app = angular.module('LordApp', []);
 
 app.controller('AppController', ['$http', function($http){
   const controller = this;
-  this.word = 'poop';
   this.url = 'http://localhost:3000/'
-  this.showNewSongForm = true;
-  this.showNewSermonForm = true;
+  this.showStartButton = true;
   this.allSongs = [];
   this.allSermons = [];
   this.allServices = [];
@@ -28,7 +26,6 @@ app.controller('AppController', ['$http', function($http){
     }).then(
       function(response){
         controller.allSongs = response.data;
-        console.log(controller.allSongs, 'all songs')
       }, function(error){
         console.log(error, 'error from getAllSongs()')
       }
@@ -41,7 +38,6 @@ app.controller('AppController', ['$http', function($http){
     }).then(
       function(response){
         controller.allSermons = response.data;
-        // console.log(response, 'response from getAllSermons()');
       }, function(error){
         console.log(error, 'error from getAllSermons()');
       }
@@ -53,25 +49,24 @@ app.controller('AppController', ['$http', function($http){
       url: this.url + 'bulletins'
     }).then(function(response){
       controller.allServices = response.data;
-      console.log(controller.allServices, 'this.allServices')
     }, function(error){
       console.log(error, 'error from getAllServices()')
     })
   };
+  this.startNewService = function(){
+    this.showStartButton = false;
+  };
   this.startNewSong = function(){
-    this.showNewSongForm = false;
     $http({
       method: 'POST',
       url: this.url + 'songs',
       data: this.newSongData
     }).then(
       function(response){
-        // console.log(response,'response')
         controller.newSongData.copyrightInfo = response.data.copyrightInfo;
         controller.newSongData.songId = response.data._id;
         controller.newSongData.lyrics = response.data.lyrics;
         controller.newSongData.title = response.data.title;
-        // console.log(controller.newSongData, 'new song');
       }, function(error){
         console.log(error, 'error in startNewSong()');
       }
@@ -89,16 +84,13 @@ app.controller('AppController', ['$http', function($http){
       function(response){
         controller.newSongData.lyrics = response.data.lyrics;
         controller.newSongVerse = '';
-        // console.log(controller.newSongData.lyrics, 'newSongData.lyrics')
-        // console.log(controller.newSongData, 'newSongData');
       }, function(error) {
         console.log(error, 'error from addNewStanza()');
       }
     )
   };
   this.addLastStanza = function(){
-    this.addNewStanza;
-    this.showNewSongForm = true;
+    this.addNewStanza();
     this.newSongData = {};
     this.getAllSongs();
   }
@@ -120,7 +112,6 @@ app.controller('AppController', ['$http', function($http){
       url: this.url + 'sermons/' + id
     }).then(
       function(response){
-        console.log(response);
         controller.getAllSermons();
       }, function(error){
         console.log(error, 'error from deleteSermon()');
@@ -132,14 +123,12 @@ app.controller('AppController', ['$http', function($http){
       method: 'DELETE',
       url: this.url + 'bulletins/' + id
     }).then(function(response){
-      console.log(response, 'response from deleteService');
       controller.getAllServices();
     }, function(error){
-      console.log(error, 'error from deleteService');
+      console.log(error, 'error from deleteService()');
     })
   };
   this.startNewSermon = function(){
-    this.showNewSermonForm = false;
     $http({
       method: 'POST',
       url: this.url + 'sermons',
@@ -149,7 +138,6 @@ app.controller('AppController', ['$http', function($http){
         controller.newSermonData.title = response.data.title;
         controller.newSermonData.sermonId = response.data._id;
         controller.newSermonData.body = response.data.body;
-        console.log(controller.newSermonData, 'new sermon');
       }, function(error){
         console.log(error, 'error from startNewSermon()');
       }
@@ -167,23 +155,19 @@ app.controller('AppController', ['$http', function($http){
       function(response){
         controller.newSermonData.body = response.data.body;
         controller.newSermonParagraph = '';
-        // console.log(response, 'response from addNewParagraph()');
-        // console.log(controller.newSermonData, 'new sermon data');
       }, function(error){
         console.log(error, 'error from addNewParagraph()');
       }
     )
   };
   this.addLastParagraph = function(){
-    this.addNewParagraph;
-    this.showNewSermonForm = true;
+    this.addNewParagraph();
     this.newSermonData = {};
     this.getAllSermons();
   }
   this.addDate = function(){
     this.newService.date = this.date;
     this.date = '';
-    console.log(this.newService, 'current service');
   };
   this.addPraiseSong = function(){
     this.newService.praiseMusic.push(this.addingSong);

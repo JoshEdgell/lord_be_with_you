@@ -10,12 +10,69 @@ h1 {
   margin: 1em;
 }
 
+button {
+  background-color: rgb(15, 96, 100);
+  color: rgb(255, 255, 255);
+}
+
+/* check to be sure buttons don't all just disappear */
+#buttonClick {
+  -webkit-animation: buttonClick 0.1s;
+  animation: buttonClick 0.1s;
+}
+
 .build {
-  height: 400px;
+  height: 40em;
   border: 1px solid black;
 }
 
+.btnStartService {
+  margin-top: 1em;
+}
+
 .review {
-  height: 5000px;
+  height: 40em;
   border: 1px solid red;
+  overflow: scroll;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+@-webkit-keyframes buttonClick {
+  0% {
+    -webkit-transform: scale(1,1);
+    transform: scale(1,1);
+  }
+  50% {
+    -webkit-transform: scale(0.95,0.95);
+    transform: scale(0.95,0.95);
+  }
+  100% {
+    -webkit-transform: scale(1,1);
+    transform: scale(1,1);
+  }
+}
+
+@keyframes buttonClick {
+  0% {
+    -webkit-transform: scale(1,1);
+    transform: scale(1,1);
+  }
+  50% {
+    -webkit-transform: scale(0.95,0.95);
+    transform: scale(0.95,0.95);
+  }
+  100% {
+    -webkit-transform: scale(1,1);
+    transform: scale(1,1);
+  }
 }
