@@ -79,10 +79,11 @@
 
           <div class="praiseSlides">
             <div class="song" ng-repeat="song in ctrl.newService.praiseMusic">
-              {{song}}
-              <hr>
-              <div ng-repeat="whole in song">
-                {{whole}}
+              <div class="slide">
+                {{song.title}}
+              </div>
+              <div class="slide" ng-repeat="whole in song.lyrics">
+                {{whole.verse}}
               </div>
             </div>
           </div>

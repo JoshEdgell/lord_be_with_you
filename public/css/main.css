@@ -36,6 +36,14 @@ button {
   overflow: scroll;
 }
 
+.slide {
+  border: 1px solid black;
+  border-radius: 5px;
+  text-align: center;
+  margin-bottom: 0.5em;
+  height: 8em;
+}
+
 
 
 
