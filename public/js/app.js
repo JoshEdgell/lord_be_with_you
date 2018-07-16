@@ -4,6 +4,8 @@ app.controller('AppController', ['$http', function($http){
   const controller = this;
   this.url = 'http://localhost:3000/'
   this.showStartButton = true;
+  this.showAddDate = false;
+  this.showAddMusic = false;
   this.allSongs = [];
   this.allSermons = [];
   this.allServices = [];
@@ -55,6 +57,7 @@ app.controller('AppController', ['$http', function($http){
   };
   this.startNewService = function(){
     this.showStartButton = false;
+    this.showAddDate = true;
   };
   this.startNewSong = function(){
     $http({
@@ -168,6 +171,8 @@ app.controller('AppController', ['$http', function($http){
   this.addDate = function(){
     this.newService.date = this.date;
     this.date = '';
+    this.showAddDate = false;
+    this.showAddMusic = true;
   };
   this.addPraiseSong = function(){
     this.newService.praiseMusic.push(this.addingSong);

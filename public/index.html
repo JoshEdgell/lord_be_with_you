@@ -24,10 +24,25 @@
       <div class="row">
         <div class="build col-9">
 
-          <button class="btn btn-primary- btn-lg btnStartService" ng-if="ctrl.showStartButton" ng-click="ctrl.startNewService()">Start Service</button>
+          <button class="btn btn-primary- btn-lg btnStartService" ng-if="ctrl.showStartButton" ng-click="ctrl.startNewService()">
+            Start Service
+          </button>
 
           <div class="newSermon" ng-if="!ctrl.showStartButton">
 
+            <div class="addDate" ng-show="ctrl.showAddDate">
+              <input type="text" ng-model="ctrl.date">
+              <button ng-click="ctrl.addDate()">
+                Add Date
+              </button>
+            </div>
+            <div class="addMusic" ng-show="ctrl.showAddMusic">
+              <select ng-model="ctrl.addingSong" ng-options="song.title for song in ctrl.allSongs">
+                <input type="submit" value="Add Praise Song" ng-click="ctrl.addPraiseSong()">
+              </select>
+            </div>
+
+            <hr>
             <h5>
               Date: {{ctrl.newService.date}}
             </h5>
@@ -35,7 +50,7 @@
               Praise Music:
             </h5>
             <ul>
-              <li ng-repeat="song in ctrl.newService.praiseMusic"></li>
+              <li ng-repeat="song in ctrl.newService.praiseMusic">{{song.title}}</li>
             </ul>
             <h5>
               Sermon: {{ctrl.newService.sermon.title}}
@@ -53,7 +68,6 @@
               <li ng-repeat="song in
               ctrl.newService.closingMusic"></li>
             </ul>
-            <hr>
 
           </div>
 
@@ -62,6 +76,17 @@
           <h3>
             Review
           </h3>
+
+          <div class="praiseSlides">
+            <div class="song" ng-repeat="song in ctrl.newService.praiseMusic">
+              {{song}}
+              <hr>
+              <div ng-repeat="whole in song">
+                {{whole}}
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>

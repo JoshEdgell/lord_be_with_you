@@ -78,16 +78,21 @@
         <h1>Create Service</h1>
           Date: <input type="text" ng-model="main.date">
           <input type="submit" value="Add Date" ng-click="main.addDate()"></br>
+
           Praise Music:
           <select ng-model="main.addingSong" ng-options="song.title for song in main.allSongs">
           <input type="submit" value="Add Praise Song" ng-click="main.addPraiseSong()"></br>
           </select>
+
           Sermon:
           <select ng-model="main.addingSermon" ng-options="sermon.title for sermon in main.allSermons">
             <input type="submit" value="Add Sermon" ng-click="main.addSermon()"></br>
           </select>
+
+          Announcements:
           <textarea ng-model="main.newAnnouncement"></textarea>
           <input type="submit" value="Add Announcement" ng-click="main.addAnnouncement()"><br/>
+
           Closing Music:
           <select ng-model="main.addingSong" ng-options="song.title for song in main.allSongs">
           <input type="submit" value="Add Closing Song" ng-click="main.addClosingSong()"></br>
