@@ -24,8 +24,8 @@
       <div class="row">
         <div class="build col-9">
 
-          <div class="addEdit">
-            <div class="newSong" ng-show="ctrl.showNewSongModal">
+          <div class="addEdit" ng-show="ctrl.showNewSongModal">
+            <div class="newSong">
               <h2>New Song</h2>
                 <div id="startNewSong" ng-if="ctrl.showNewSongStart">
                   <form ng-submit="ctrl.startNewSong()">
@@ -59,6 +59,9 @@
                       Add Verse
                     </button>
                   </form>
+                  <button class="btn btn-primary btn-lg" ng-click="ctrl.addLastStanza()">
+                    End Song
+                  </button>
                 </div>
 
 
@@ -184,8 +187,8 @@
         </div>
         <div class="review col-3">
 
-          <div class="addEdit">
-            <div ng-show="ctrl.showNewSongModal">
+          <div class="addEdit" ng-show="ctrl.showNewSongModal">
+            <div>
               <h2>New Song</h2>
               <div class="slide">
                 <h5>

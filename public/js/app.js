@@ -81,6 +81,7 @@ app.controller('AppController', ['$http', function($http){
   this.addLastStanza = function(){
     this.addNewStanza();
     this.newSongData = {};
+    this.showNewSongModal = false;
     this.getAllSongs();
   };
   this.addPraiseSong = function(used){
