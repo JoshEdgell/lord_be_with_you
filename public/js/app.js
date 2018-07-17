@@ -6,6 +6,8 @@ app.controller('AppController', ['$http', function($http){
   this.showStartButton = true;
   this.showAddDate = false;
   this.showAddMusic = false;
+  this.showAddSermon = false;
+  this.showAddAnnouncements = false;
   this.allSongs = [];
   this.allSermons = [];
   this.allServices = [];
@@ -178,9 +180,15 @@ app.controller('AppController', ['$http', function($http){
     this.newService.praiseMusic.push(this.addingSong);
     this.addingSong = null;
   };
+  this.addLastPraiseSong = function(){
+    this.showAddMusic = false;
+    this.showAddSermon = true;
+  }
   this.addSermon = function(){
     this.newService.sermon = this.addingSermon;
     this.addingSermon = null;
+    this.showAddSermon = false;
+    this.showAddAnnouncements = true;
   };
   this.addAnnouncement = function(){
     this.newService.announcements.push(this.newAnnouncement);

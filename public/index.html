@@ -28,18 +28,47 @@
             Start Service
           </button>
 
-          <div class="newSermon" ng-if="!ctrl.showStartButton">
+          <div class="newService" ng-if="!ctrl.showStartButton">
 
             <div class="addDate" ng-show="ctrl.showAddDate">
               <input type="text" ng-model="ctrl.date">
-              <button ng-click="ctrl.addDate()">
+              <button class="btn btn-primary- btn-lg" ng-click="ctrl.addDate()">
                 Add Date
               </button>
             </div>
+
             <div class="addMusic" ng-show="ctrl.showAddMusic">
+
               <select ng-model="ctrl.addingSong" ng-options="song.title for song in ctrl.allSongs">
-                <input type="submit" value="Add Praise Song" ng-click="ctrl.addPraiseSong()">
               </select>
+
+              <button class="btn btn-primary- btn-lg" ng-click="ctrl.addPraiseSong()">
+                Add Praise Song
+              </button>
+
+              <button class="btn btn-primary- btn-lg" ng-click="ctrl.openNewSongModal">
+                Create New Praise Song
+              </button>
+
+
+              <button class="btn btn-primary- btn-lg" ng-click="ctrl.addLastPraiseSong()">
+                Continue to Sermon
+              </button>
+            </div>
+
+            <div class="addSermon" ng-show="ctrl.showAddSermon">
+              <select ng-model="ctrl.addingSermon" ng-options="sermon.title for sermon in ctrl.allSermons">
+              </select>
+              <button class="btn btn-primary- btn-lg" ng-click="ctrl.addSermon()">
+                Add Sermon
+              </button>
+            </div>
+
+            <div class="addAnnouncements" ng-show="ctrl.showAddAnnouncements">
+              <textarea ng-model="ctrl.newAnnouncement"></textarea>
+              <button class="btn btn-primary- btn-lg" ng-click="ctrl.addAnnouncement()">
+                Add Announcement
+              </button>
             </div>
 
             <hr>
@@ -59,14 +88,14 @@
               Announcements:
             </h5>
             <ul>
-              <li ng-repeat="announcement in ctrl.newService.announcements"></li>
+              <li ng-repeat="announcement in ctrl.newService.announcements">{{announcement}}</li>
             </ul>
             <h5>
               Closing Music:
             </h5>
             <ul>
               <li ng-repeat="song in
-              ctrl.newService.closingMusic"></li>
+              ctrl.newService.closingMusic">{{song}}</li>
             </ul>
 
           </div>
@@ -77,8 +106,9 @@
             Review
           </h3>
 
-          <div class="praiseSlides">
-            <div class="song" ng-repeat="song in ctrl.newService.praiseMusic">
+          <div class="serviceSlides">
+
+            <div ng-repeat="song in ctrl.newService.praiseMusic">
               <div class="slide">
                 {{song.title}}
               </div>
@@ -86,6 +116,14 @@
                 {{whole.verse}}
               </div>
             </div>
+
+            <div class="slide" ng-if="ctrl.newService.sermon.title">
+              {{ctrl.newService.sermon.title}}
+            </div>
+            <div class="slide" ng-repeat="paragraph in ctrl.newService.sermon.body">
+              {{paragraph.text}}
+            </div>
+
           </div>
 
         </div>
