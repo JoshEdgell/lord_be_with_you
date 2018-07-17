@@ -54,6 +54,7 @@
               <button class="btn btn-primary- btn-lg" ng-click="ctrl.addLastPraiseSong()">
                 Continue to Sermon
               </button>
+
             </div>
 
             <div class="addSermon" ng-show="ctrl.showAddSermon">
@@ -69,6 +70,29 @@
               <button class="btn btn-primary- btn-lg" ng-click="ctrl.addAnnouncement()">
                 Add Announcement
               </button>
+              <button class="btn btn-primary- btn-lg" ng-click="ctrl.addLastAnnouncement()">
+                Add Last Announcement
+              </button>
+            </div>
+
+            <div class="addClosingMusic" ng-show="ctrl.showAddClosingMusic">
+
+              <select ng-model="ctrl.addingSong" ng-options="song.title for song in ctrl.allSongs">
+              </select>
+
+              <button class="btn btn-primary- btn-lg" ng-click="ctrl.addClosingSong()">
+                Add Closing Song
+              </button>
+
+              <button class="btn btn-primary- btn-lg" ng-click="ctrl.openNewSongModal">
+                Create New Song
+              </button>
+
+
+              <button class="btn btn-primary- btn-lg" ng-click="ctrl.createBulletin()">
+                Create Service
+              </button>
+
             </div>
 
             <hr>
@@ -94,8 +118,9 @@
               Closing Music:
             </h5>
             <ul>
-              <li ng-repeat="song in
-              ctrl.newService.closingMusic">{{song}}</li>
+              <li ng-repeat="song in ctrl.newService.closingMusic">
+                {{song.title}}
+              </li>
             </ul>
 
           </div>
@@ -120,8 +145,22 @@
             <div class="slide" ng-if="ctrl.newService.sermon.title">
               {{ctrl.newService.sermon.title}}
             </div>
+
             <div class="slide" ng-repeat="paragraph in ctrl.newService.sermon.body">
               {{paragraph.text}}
+            </div>
+
+            <div class="slide" ng-repeat="announcement in ctrl.newService.announcements">
+              {{announcement}}
+            </div>
+
+            <div ng-repeat="song in ctrl.newService.closingMusic">
+              <div class="slide">
+                {{song.title}}
+              </div>
+              <div class="slide" ng-repeat="whole in song.lyrics">
+                {{whole.verse}}
+              </div>
             </div>
 
           </div>

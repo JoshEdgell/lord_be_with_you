@@ -8,6 +8,7 @@ app.controller('AppController', ['$http', function($http){
   this.showAddMusic = false;
   this.showAddSermon = false;
   this.showAddAnnouncements = false;
+  this.showAddClosingMusic = false;
   this.allSongs = [];
   this.allSermons = [];
   this.allServices = [];
@@ -194,6 +195,10 @@ app.controller('AppController', ['$http', function($http){
     this.newService.announcements.push(this.newAnnouncement);
     this.newAnnouncement = null;
   };
+  this.addLastAnnouncement = function(){
+    this.showAddAnnouncements = false;
+    this.showAddClosingMusic = true;
+  };
   this.addClosingSong = function(){
     this.newService.closingMusic.push(this.addingSong);
     this.addingSong = null;
@@ -205,6 +210,7 @@ app.controller('AppController', ['$http', function($http){
       data: this.newService
     }).then(
       function(response){
+        console.log(response);
         controller.newService = {
           date: '',
           praiseMusic: [],
@@ -212,6 +218,7 @@ app.controller('AppController', ['$http', function($http){
           announcements: [],
           closingMusic: []
         };
+        controller.showAddClosingMusic = false;
         controller.getAllServices();
       }, function(error){
         console.log(error, 'error from createdBulletin()');
