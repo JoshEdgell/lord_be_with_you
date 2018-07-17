@@ -20,7 +20,7 @@ app.controller('AppController', ['$http', function($http){
     closingMusic: []
   };
   // Song
-  this.showNewSongModal = true;
+  this.showNewSongModal = false;
   this.showNewSongStart = true;
   // Sermon
   // Service
