@@ -24,7 +24,55 @@
       <div class="row">
         <div class="build col-9">
 
-          <button class="btn btn-primary- btn-lg btnStartService" ng-if="ctrl.showStartButton" ng-click="ctrl.startNewService()">
+          <div class="addEdit">
+            <div class="newSong" ng-show="ctrl.showNewSongModal">
+              <h2>New Song</h2>
+                <div id="startNewSong" ng-if="ctrl.showNewSongStart">
+                  <form ng-submit="ctrl.startNewSong()">
+                    <div class="form-group">
+                      <label for="songTitle">
+                        Song Title
+                      </label>
+                      <input type="text" ng-model="ctrl.newSongData.title" class="form-control" id="songTitle" placeholder="Song Title">
+                    </div>
+                    <div class="form-group">
+                      <label for="songCopyrightInfo">
+                        Copyright Info
+                      </label>
+                      <input type="text" ng-model="ctrl.newSongData.copyrightInfo" class="form-control" id="songCopyRightInfo" placeholder="Copyright Info">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg">
+                      Add Title Info
+                    </button>
+                  </form>
+                </div>
+
+                <div id="addVerse" ng-show="!ctrl.showNewSongStart">
+                  <form ng-submit="ctrl.addNewStanza()">
+                    <div class="form-group">
+                      <label for="nextVerse">
+                        Next Verse
+                      </label>
+                      <textarea class="form-control" id="nextVerse" rows="3" placeholder="Add verse text here" ng-model="ctrl.newSongVerse"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg">
+                      Add Verse
+                    </button>
+                  </form>
+                </div>
+
+
+
+            </div>
+          </div>
+
+
+
+
+
+
+
+          <button class="btn btn-primary btn-lg btnStartService" ng-if="ctrl.showStartButton" ng-click="ctrl.startNewService()">
             Start Service
           </button>
 
@@ -32,7 +80,7 @@
 
             <div class="addDate" ng-show="ctrl.showAddDate">
               <input type="text" ng-model="ctrl.date">
-              <button class="btn btn-primary- btn-lg" ng-click="ctrl.addDate()">
+              <button class="btn btn-primary btn-lg" ng-click="ctrl.addDate()">
                 Add Date
               </button>
             </div>
@@ -42,16 +90,24 @@
               <select ng-model="ctrl.addingSong" ng-options="song.title for song in ctrl.allSongs">
               </select>
 
-              <button class="btn btn-primary- btn-lg" ng-click="ctrl.addPraiseSong()">
+              <button class="btn btn-primary btn-lg" ng-click="ctrl.addPraiseSong()">
                 Add Praise Song
               </button>
 
-              <button class="btn btn-primary- btn-lg" ng-click="ctrl.openNewSongModal">
+              <button class="btn btn-primary btn-lg" ng-click="ctrl.showNewSongModal = true">
                 Create New Praise Song
               </button>
 
 
-              <button class="btn btn-primary- btn-lg" ng-click="ctrl.addLastPraiseSong()">
+
+
+
+
+
+
+
+
+              <button class="btn btn-primary btn-lg" ng-click="ctrl.addLastPraiseSong()">
                 Continue to Sermon
               </button>
 
@@ -60,17 +116,17 @@
             <div class="addSermon" ng-show="ctrl.showAddSermon">
               <select ng-model="ctrl.addingSermon" ng-options="sermon.title for sermon in ctrl.allSermons">
               </select>
-              <button class="btn btn-primary- btn-lg" ng-click="ctrl.addSermon()">
+              <button class="btn btn-primary btn-lg" ng-click="ctrl.addSermon()">
                 Add Sermon
               </button>
             </div>
 
             <div class="addAnnouncements" ng-show="ctrl.showAddAnnouncements">
               <textarea ng-model="ctrl.newAnnouncement"></textarea>
-              <button class="btn btn-primary- btn-lg" ng-click="ctrl.addAnnouncement()">
+              <button class="btn btn-primary btn-lg" ng-click="ctrl.addAnnouncement()">
                 Add Announcement
               </button>
-              <button class="btn btn-primary- btn-lg" ng-click="ctrl.addLastAnnouncement()">
+              <button class="btn btn-primary btn-lg" ng-click="ctrl.addLastAnnouncement()">
                 Add Last Announcement
               </button>
             </div>
@@ -80,16 +136,16 @@
               <select ng-model="ctrl.addingSong" ng-options="song.title for song in ctrl.allSongs">
               </select>
 
-              <button class="btn btn-primary- btn-lg" ng-click="ctrl.addClosingSong()">
+              <button class="btn btn-primary btn-lg" ng-click="ctrl.addClosingSong()">
                 Add Closing Song
               </button>
 
-              <button class="btn btn-primary- btn-lg" ng-click="ctrl.openNewSongModal">
+              <button class="btn btn-primary btn-lg" ng-click="ctrl.openNewSongModal">
                 Create New Song
               </button>
 
 
-              <button class="btn btn-primary- btn-lg" ng-click="ctrl.createBulletin()">
+              <button class="btn btn-primary btn-lg" ng-click="ctrl.createBulletin()">
                 Create Service
               </button>
 
@@ -127,6 +183,40 @@
 
         </div>
         <div class="review col-3">
+
+          <div class="addEdit">
+            <div ng-show="ctrl.showNewSongModal">
+              <h2>New Song</h2>
+              <div class="slide">
+                <h5>
+                  {{ctrl.newSongData.title}}
+                </h5>
+                <h6>
+                  {{ctrl.newSongData.copyrightInfo}}
+                </h6>
+              </div>
+              <div class="slide" ng-repeat="element in ctrl.newSongData.lyrics">
+                <h6 class="centerText">
+                  {{element.verse}}
+                </h6>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
           <h3>
             Review
           </h3>

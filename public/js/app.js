@@ -3,12 +3,7 @@ const app = angular.module('LordApp', []);
 app.controller('AppController', ['$http', function($http){
   const controller = this;
   this.url = 'http://localhost:3000/'
-  this.showStartButton = true;
-  this.showAddDate = false;
-  this.showAddMusic = false;
-  this.showAddSermon = false;
-  this.showAddAnnouncements = false;
-  this.showAddClosingMusic = false;
+  // Data
   this.allSongs = [];
   this.allSermons = [];
   this.allServices = [];
@@ -24,7 +19,19 @@ app.controller('AppController', ['$http', function($http){
     announcements: [],
     closingMusic: []
   };
-  this.getAllSongs = function(){
+  // Song
+  this.showNewSongModal = true;
+  this.showNewSongStart = true;
+  // Sermon
+  // Service
+  this.showStartButton = true;
+  this.showAddDate = false;
+  this.showAddMusic = false;
+  this.showAddSermon = false;
+  this.showAddAnnouncements = false;
+  this.showAddClosingMusic = false;
+  // Song Methods
+  this.getAllSongs = function(used){
     $http({
       method: 'GET',
       url: this.url + 'songs'
@@ -36,32 +43,6 @@ app.controller('AppController', ['$http', function($http){
       }
     )
   };
-  this.getAllSermons = function(){
-    $http({
-      method: 'GET',
-      url: this.url + 'sermons'
-    }).then(
-      function(response){
-        controller.allSermons = response.data;
-      }, function(error){
-        console.log(error, 'error from getAllSermons()');
-      }
-    )
-  };
-  this.getAllServices = function(){
-    $http({
-      method: 'GET',
-      url: this.url + 'bulletins'
-    }).then(function(response){
-      controller.allServices = response.data;
-    }, function(error){
-      console.log(error, 'error from getAllServices()')
-    })
-  };
-  this.startNewService = function(){
-    this.showStartButton = false;
-    this.showAddDate = true;
-  };
   this.startNewSong = function(){
     $http({
       method: 'POST',
@@ -69,6 +50,8 @@ app.controller('AppController', ['$http', function($http){
       data: this.newSongData
     }).then(
       function(response){
+        console.log(response.data);
+        controller.showNewSongStart = false;
         controller.newSongData.copyrightInfo = response.data.copyrightInfo;
         controller.newSongData.songId = response.data._id;
         controller.newSongData.lyrics = response.data.lyrics;
@@ -99,7 +82,19 @@ app.controller('AppController', ['$http', function($http){
     this.addNewStanza();
     this.newSongData = {};
     this.getAllSongs();
+  };
+  this.addPraiseSong = function(used){
+    this.newService.praiseMusic.push(this.addingSong);
+    this.addingSong = null;
+  };
+  this.addLastPraiseSong = function(used){
+    this.showAddMusic = false;
+    this.showAddSermon = true;
   }
+  this.addClosingSong = function(used){
+    this.newService.closingMusic.push(this.addingSong);
+    this.addingSong = null;
+  };
   this.deleteSong = function(id){
     $http({
       method: 'DELETE',
@@ -112,27 +107,18 @@ app.controller('AppController', ['$http', function($http){
       }
     )
   };
-  this.deleteSermon = function(id){
+  // Sermon Methods
+  this.getAllSermons = function(used){
     $http({
-      method: 'DELETE',
-      url: this.url + 'sermons/' + id
+      method: 'GET',
+      url: this.url + 'sermons'
     }).then(
       function(response){
-        controller.getAllSermons();
+        controller.allSermons = response.data;
       }, function(error){
-        console.log(error, 'error from deleteSermon()');
+        console.log(error, 'error from getAllSermons()');
       }
     )
-  };
-  this.deleteService = function(id){
-    $http({
-      method: 'DELETE',
-      url: this.url + 'bulletins/' + id
-    }).then(function(response){
-      controller.getAllServices();
-    }, function(error){
-      console.log(error, 'error from deleteService()');
-    })
   };
   this.startNewSermon = function(){
     $http({
@@ -171,39 +157,54 @@ app.controller('AppController', ['$http', function($http){
     this.newSermonData = {};
     this.getAllSermons();
   }
-  this.addDate = function(){
-    this.newService.date = this.date;
-    this.date = '';
-    this.showAddDate = false;
-    this.showAddMusic = true;
-  };
-  this.addPraiseSong = function(){
-    this.newService.praiseMusic.push(this.addingSong);
-    this.addingSong = null;
-  };
-  this.addLastPraiseSong = function(){
-    this.showAddMusic = false;
-    this.showAddSermon = true;
-  }
-  this.addSermon = function(){
+  this.addSermon = function(used){
     this.newService.sermon = this.addingSermon;
     this.addingSermon = null;
     this.showAddSermon = false;
     this.showAddAnnouncements = true;
   };
-  this.addAnnouncement = function(){
+  this.deleteSermon = function(id){
+    $http({
+      method: 'DELETE',
+      url: this.url + 'sermons/' + id
+    }).then(
+      function(response){
+        controller.getAllSermons();
+      }, function(error){
+        console.log(error, 'error from deleteSermon()');
+      }
+    )
+  };
+  // Service Methods
+  this.getAllServices = function(used){
+    $http({
+      method: 'GET',
+      url: this.url + 'bulletins'
+    }).then(function(response){
+      controller.allServices = response.data;
+    }, function(error){
+      console.log(error, 'error from getAllServices()')
+    })
+  };
+  this.startNewService = function(used){
+    this.showStartButton = false;
+    this.showAddDate = true;
+  };
+  this.addDate = function(used){
+    this.newService.date = this.date;
+    this.date = '';
+    this.showAddDate = false;
+    this.showAddMusic = true;
+  };
+  this.addAnnouncement = function(used){
     this.newService.announcements.push(this.newAnnouncement);
     this.newAnnouncement = null;
   };
-  this.addLastAnnouncement = function(){
+  this.addLastAnnouncement = function(used){
     this.showAddAnnouncements = false;
     this.showAddClosingMusic = true;
   };
-  this.addClosingSong = function(){
-    this.newService.closingMusic.push(this.addingSong);
-    this.addingSong = null;
-  };
-  this.createBulletin = function(){
+  this.createService = function(used){
     $http({
       method: 'POST',
       url: this.url + 'bulletins',
@@ -225,6 +226,17 @@ app.controller('AppController', ['$http', function($http){
       }
     )
   };
+  this.deleteService = function(id){
+    $http({
+      method: 'DELETE',
+      url: this.url + 'bulletins/' + id
+    }).then(function(response){
+      controller.getAllServices();
+    }, function(error){
+      console.log(error, 'error from deleteService()');
+    })
+  };
+
   this.getAllSongs();
   this.getAllSermons();
   this.getAllServices();
