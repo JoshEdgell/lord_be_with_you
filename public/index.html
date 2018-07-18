@@ -53,14 +53,14 @@
                       <label for="nextVerse">
                         Next Verse
                       </label>
-                      <textarea class="form-control" id="nextVerse" rows="3" placeholder="Add verse text here" ng-model="ctrl.newSongVerse"></textarea>
+                      <textarea class="form-control" id="nextVerse" rows="3" placeholder='Add verse text here (if this is the last verse, click "add last verse")' ng-model="ctrl.newSongVerse"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary btn-lg">
                       Add Verse
                     </button>
                   </form>
                   <button class="btn btn-primary btn-lg" ng-click="ctrl.addLastStanza()">
-                    End Song
+                    Add Last Verse
                   </button>
                 </div>
 
@@ -230,8 +230,8 @@
               <div class="slide">
                 {{song.title}}
               </div>
-              <div class="slide" ng-repeat="whole in song.lyrics">
-                {{whole.verse}}
+              <div class="slide" ng-repeat="element in song.lyrics">
+                {{element.verse}}
               </div>
             </div>
 

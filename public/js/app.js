@@ -61,7 +61,14 @@ app.controller('AppController', ['$http', function($http){
       }
     )
   };
+  this.findNewLines = function(string){
+    string = string.replace(/\n/g,'');
+    return string
+  };
   this.addNewStanza = function(){
+    this.newSongVerse = this.findNewLines(this.newSongVerse);
+    console.log(this.newSongVerse)
+
     $http({
       method: 'POST',
       url: this.url + 'stanzas',
