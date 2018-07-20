@@ -24,48 +24,52 @@
       <div class="row">
         <div class="build col-9">
 
-          <div class="addEdit" ng-show="ctrl.showNewSongModal">
-            <div class="newSong">
-              <h2>New Song</h2>
-                <div id="startNewSong" ng-if="ctrl.showNewSongStart">
-                  <form ng-submit="ctrl.startNewSong()">
-                    <div class="form-group">
-                      <label for="songTitle">
-                        Song Title
-                      </label>
-                      <input type="text" ng-model="ctrl.newSongData.title" class="form-control" id="songTitle" placeholder="Song Title">
-                    </div>
-                    <div class="form-group">
-                      <label for="songCopyrightInfo">
-                        Copyright Info
-                      </label>
-                      <input type="text" ng-model="ctrl.newSongData.copyrightInfo" class="form-control" id="songCopyRightInfo" placeholder="Copyright Info">
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-lg">
-                      Add Title Info
-                    </button>
-                  </form>
-                </div>
-
-                <div id="addVerse" ng-show="!ctrl.showNewSongStart">
-                  <form ng-submit="ctrl.addNewStanza()">
-                    <div class="form-group">
-                      <label for="nextVerse">
-                        Next Verse
-                      </label>
-                      <textarea class="form-control" id="nextVerse" rows="3" placeholder='Add verse text here (if this is the last verse, click "add last verse")' ng-model="ctrl.newSongVerse"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-lg">
-                      Add Verse
-                    </button>
-                  </form>
-                  <button class="btn btn-primary btn-lg" ng-click="ctrl.addLastStanza()">
-                    Add Last Verse
+          <div class="addEdit" ng-show="ctrl.showAddEditModal">
+            <div class="newSong" ng-show="ctrl.showNewSongModal">
+              <h2>
+                New Song
+              </h2>
+              <div id="startNewSong" ng-if="ctrl.showNewSongStart">
+                <form ng-submit="ctrl.startNewSong()">
+                  <div class="form-group">
+                    <label for="songTitle">
+                      Song Title
+                    </label>
+                    <input type="text" ng-model="ctrl.newSongData.title" class="form-control" id="songTitle" placeholder="Song Title">
+                  </div>
+                  <div class="form-group">
+                    <label for="songCopyrightInfo">
+                      Copyright Info
+                    </label>
+                    <input type="text" ng-model="ctrl.newSongData.copyrightInfo" class="form-control" id="songCopyRightInfo" placeholder="Copyright Info">
+                  </div>
+                  <button type="submit" class="btn btn-primary btn-lg">
+                    Add Title Info
                   </button>
-                </div>
+                </form>
+              </div>
 
-
-
+              <div id="addVerse" ng-show="!ctrl.showNewSongStart">
+                <form ng-submit="ctrl.addNewStanza()">
+                  <div class="form-group">
+                    <label for="nextVerse">
+                      Next Verse
+                    </label>
+                    <textarea class="form-control" id="nextVerse" rows="3" placeholder='Add verse text here (if this is the last verse, click "add last verse")' ng-model="ctrl.newSongVerse"></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-primary btn-lg">
+                    Add Verse
+                  </button>
+                </form>
+                <button class="btn btn-primary btn-lg" ng-click="ctrl.addLastStanza()">
+                  Add Last Verse
+                </button>
+              </div>
+            </div>
+            <div class="newSermon" ng-show="ctrl.showNewSermonModal">
+              <h2>
+                New Sermon
+              </h2>
             </div>
           </div>
 
@@ -97,7 +101,7 @@
                 Add Praise Song
               </button>
 
-              <button class="btn btn-primary btn-lg" ng-click="ctrl.showNewSongModal = true">
+              <button class="btn btn-primary btn-lg" ng-click="ctrl.openSongModal()">
                 Create New Praise Song
               </button>
 
@@ -121,6 +125,9 @@
               </select>
               <button class="btn btn-primary btn-lg" ng-click="ctrl.addSermon()">
                 Add Sermon
+              </button>
+              <button class="btn btn-primary btn-lg" ng-click="ctrl.openSermonModal()">
+                Create New Sermon
               </button>
             </div>
 
@@ -187,9 +194,11 @@
         </div>
         <div class="review col-3">
 
-          <div class="addEdit" ng-show="ctrl.showNewSongModal">
-            <div>
-              <h2>New Song</h2>
+          <div class="addEdit" ng-show="ctrl.showAddEditModal">
+            <div ng-if="ctrl.showNewSongModal">
+              <h2>
+                New Song
+              </h2>
               <div class="slide">
                 <h5>
                   {{ctrl.newSongData.title}}
@@ -204,6 +213,18 @@
                 </h6>
               </div>
             </div>
+            <div ng-if="ctrl.showNewSermonModal">
+              <h2>
+                New Sermon
+              </h2>
+              <div class="slide">
+                <h5>
+                  {{ctrl}}
+
+
+
+
+
           </div>
 
 
@@ -215,14 +236,9 @@
 
 
 
-
-
-
-
-
-          <h3>
+          <h2>
             Review
-          </h3>
+          </h2>
 
           <div class="serviceSlides">
 

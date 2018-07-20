@@ -19,10 +19,12 @@ app.controller('AppController', ['$http', function($http){
     announcements: [],
     closingMusic: []
   };
+  this.showAddEditModal = false;
   // Song
   this.showNewSongModal = false;
   this.showNewSongStart = true;
   // Sermon
+  this.showNewSermonModal = false;
   // Service
   this.showStartButton = true;
   this.showAddDate = false;
@@ -31,7 +33,7 @@ app.controller('AppController', ['$http', function($http){
   this.showAddAnnouncements = false;
   this.showAddClosingMusic = false;
   // Song Methods
-  this.getAllSongs = function(used){
+  this.getAllSongs = function(){
     $http({
       method: 'GET',
       url: this.url + 'songs'
@@ -42,6 +44,10 @@ app.controller('AppController', ['$http', function($http){
         console.log(error, 'error from getAllSongs()')
       }
     )
+  };
+  this.openSongModal = function(){
+    this.showNewSongModal = true;
+    this.showAddEditModal = true;
   };
   this.startNewSong = function(){
     $http({
@@ -89,17 +95,18 @@ app.controller('AppController', ['$http', function($http){
     this.addNewStanza();
     this.newSongData = {};
     this.showNewSongModal = false;
+    this.showAddEditModal = false;
     this.getAllSongs();
   };
-  this.addPraiseSong = function(used){
+  this.addPraiseSong = function(){
     this.newService.praiseMusic.push(this.addingSong);
     this.addingSong = null;
   };
-  this.addLastPraiseSong = function(used){
+  this.addLastPraiseSong = function(){
     this.showAddMusic = false;
     this.showAddSermon = true;
   }
-  this.addClosingSong = function(used){
+  this.addClosingSong = function(){
     this.newService.closingMusic.push(this.addingSong);
     this.addingSong = null;
   };
@@ -116,7 +123,7 @@ app.controller('AppController', ['$http', function($http){
     )
   };
   // Sermon Methods
-  this.getAllSermons = function(used){
+  this.getAllSermons = function(){
     $http({
       method: 'GET',
       url: this.url + 'sermons'
@@ -127,6 +134,10 @@ app.controller('AppController', ['$http', function($http){
         console.log(error, 'error from getAllSermons()');
       }
     )
+  };
+  this.openSermonModal = function(){
+    this.showAddEditModal = true;
+    this.showNewSermonModal = true;
   };
   this.startNewSermon = function(){
     $http({
@@ -165,7 +176,7 @@ app.controller('AppController', ['$http', function($http){
     this.newSermonData = {};
     this.getAllSermons();
   }
-  this.addSermon = function(used){
+  this.addSermon = function(){
     this.newService.sermon = this.addingSermon;
     this.addingSermon = null;
     this.showAddSermon = false;
@@ -184,7 +195,7 @@ app.controller('AppController', ['$http', function($http){
     )
   };
   // Service Methods
-  this.getAllServices = function(used){
+  this.getAllServices = function(){
     $http({
       method: 'GET',
       url: this.url + 'bulletins'
@@ -194,25 +205,25 @@ app.controller('AppController', ['$http', function($http){
       console.log(error, 'error from getAllServices()')
     })
   };
-  this.startNewService = function(used){
+  this.startNewService = function(){
     this.showStartButton = false;
     this.showAddDate = true;
   };
-  this.addDate = function(used){
+  this.addDate = function(){
     this.newService.date = this.date;
     this.date = '';
     this.showAddDate = false;
     this.showAddMusic = true;
   };
-  this.addAnnouncement = function(used){
+  this.addAnnouncement = function(){
     this.newService.announcements.push(this.newAnnouncement);
     this.newAnnouncement = null;
   };
-  this.addLastAnnouncement = function(used){
+  this.addLastAnnouncement = function(){
     this.showAddAnnouncements = false;
     this.showAddClosingMusic = true;
   };
-  this.createService = function(used){
+  this.createService = function(){
     $http({
       method: 'POST',
       url: this.url + 'bulletins',
