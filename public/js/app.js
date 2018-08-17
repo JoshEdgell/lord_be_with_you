@@ -1,5 +1,19 @@
 const app = angular.module('LordApp', []);
 
+
+//Something like the following code may be what's needed to get the text of a song lyric to wrap lines.
+// function echoInput() {
+//    var txtBox = document.getElementById("inputbox");
+//    var lines = txtBox.value.split("\n");
+//    var resultString  = "<p>";
+//   for (var i = 0; i < lines.length; i++) {
+//         resultString += lines[i] + "<br />";
+//       }
+//    resultString += "</p>";
+//    var blk = document.getElementById("results");
+//    blk.innerHTML = resultString;
+// }
+
 app.controller('AppController', ['$http', function($http){
   const controller = this;
   this.url = 'http://localhost:3000/'
